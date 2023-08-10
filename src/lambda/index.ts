@@ -1,4 +1,5 @@
 import { Handler, Context, SQSEvent } from 'aws-lambda';
+import { SSMClient } from '@aws-sdk/client-ssm'; // ES Modules import
 
 function getFinding(event: SQSEvent): object {
   const _tmp = JSON.parse(event.Records[0].body).Message;
@@ -13,5 +14,8 @@ export const handler: Handler = async (event: SQSEvent, context: Context) => {
   console.log(finding);
   console.log(typeof finding);
   // console.log(finding.Compliance);
-  return context.logStreamName;
+  const ssmClient = new SSMClient({});
+  console.log(ssmClient);
+
+  return null;
 };
