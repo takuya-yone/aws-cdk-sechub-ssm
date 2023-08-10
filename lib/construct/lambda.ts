@@ -17,12 +17,12 @@ export class LambdaConstruct extends Construct {
       handler: 'handler',
       memorySize: 256,
       timeout: cdk.Duration.seconds(30),
-      // tracing: lambda.Tracing.ACTIVE,
+      tracing: lambda.Tracing.ACTIVE,
       // insightsVersion: lambda.LambdaInsightsVersion.VERSION_1_0_229_0,
       // environment: {
       //   // DDB_TABLE: props.tableName,
       // },
-      // logRetention: logs.RetentionDays.THREE_MONTHS,
+      // logRetention: logs.RetentionDays.THREE_DAYS,
     });
   }
 }
