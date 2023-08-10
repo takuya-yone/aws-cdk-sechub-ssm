@@ -2,6 +2,7 @@
 import * as cdk from 'aws-cdk-lib';
 import { Construct } from 'constructs';
 import { aws_lambda as lambda } from 'aws-cdk-lib';
+import { aws_logs as logs } from 'aws-cdk-lib';
 import { aws_lambda_nodejs as node_lambda } from 'aws-cdk-lib';
 
 import * as path from 'path';
@@ -22,6 +23,7 @@ export class LambdaConstruct extends Construct {
         timeout: cdk.Duration.seconds(30),
         tracing: lambda.Tracing.ACTIVE,
         retryAttempts: 0,
+        logRetention: logs.RetentionDays.ONE_WEEK,
         // insightsVersion: lambda.LambdaInsightsVersion.VERSION_1_0_229_0,
         // environment: {
         //   // DDB_TABLE: props.tableName,

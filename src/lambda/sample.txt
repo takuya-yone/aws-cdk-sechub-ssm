@@ -1,0 +1,63 @@
+{
+  ProductArn: 'arn:aws:securityhub:ap-northeast-1::product/aws/securityhub',
+  Types: [
+    'Software and Configuration Checks/Industry and Regulatory Standards'
+  ],
+  Description: 'This control checks for the CloudWatch metric filters using the following pattern { $.userIdentity.type = "Root" && $.userIdentity.invokedBy NOT EXISTS && $.eventType != "AwsServiceEvent" } It checks that the log group name is configured for use with active multi-region CloudTrail, that there is at least one Event Selector for a Trail with IncludeManagementEvents set to true and ReadWriteType set to All, and that there is at least one active subscriber to an SNS topic associated with the alarm.',
+  Compliance: {
+    Status: 'FAILED',
+    StatusReasons: [ [Object] ],
+    SecurityControlId: 'CloudWatch.1',
+    RelatedRequirements: [
+      'CIS AWS Foundations Benchmark v1.2.0/1.1',
+      'CIS AWS Foundations Benchmark v1.2.0/3.3',
+      'CIS AWS Foundations Benchmark v1.4.0/1.7',
+      'CIS AWS Foundations Benchmark v1.4.0/4.3'
+    ],
+    AssociatedStandards: [ [Object], [Object] ]
+  },
+  ProductName: 'Security Hub',
+  FirstObservedAt: '2023-06-18T22:19:15.637Z',
+  CreatedAt: '2023-06-18T22:19:15.637Z',
+  LastObservedAt: '2023-08-10T10:32:08.290Z',
+  CompanyName: 'AWS',
+  FindingProviderFields: {
+    Types: [
+      'Software and Configuration Checks/Industry and Regulatory Standards'
+    ],
+    Severity: { Normalized: 1, Label: 'LOW', Original: 'LOW' }
+  },
+  ProductFields: {
+    'aws/securityhub/ProductName': 'Security Hub',
+    'aws/securityhub/CompanyName': 'AWS',
+    'aws/securityhub/annotation': 'Metric filters are not present for the multi-region CloudTrail',
+    'Resources:0/Id': 'arn:aws:iam::151268123722:root',
+    'aws/securityhub/FindingId': 'arn:aws:securityhub:ap-northeast-1::product/aws/securityhub/arn:aws:securityhub:ap-northeast-1:151268123722:security-control/CloudWatch.1/finding/4d696125-c753-4fd5-b392-42a3cbbc877a'
+  },
+  Remediation: {
+    Recommendation: {
+      Text: 'For information on how to correct this issue, consult the AWS Security Hub controls documentation.',
+      Url: 'https://docs.aws.amazon.com/console/securityhub/CloudWatch.1/remediation'
+    }
+  },
+  SchemaVersion: '2018-10-08',
+  GeneratorId: 'security-control/CloudWatch.1',
+  RecordState: 'ACTIVE',
+  Title: 'A log metric filter and alarm should exist for usage of the "root" user',
+  Workflow: { Status: 'NEW' },
+  Severity: { Normalized: 1, Label: 'LOW', Original: 'LOW' },
+  UpdatedAt: '2023-08-10T10:31:57.656Z',
+  WorkflowState: 'NEW',
+  AwsAccountId: '151268123722',
+  Region: 'ap-northeast-1',
+  Id: 'arn:aws:securityhub:ap-northeast-1:151268123722:security-control/CloudWatch.1/finding/4d696125-c753-4fd5-b392-42a3cbbc877a',
+  Resources: [
+    {
+      Partition: 'aws',
+      Type: 'AwsAccount',
+      Region: 'ap-northeast-1',
+      Id: 'AWS::::Account:151268123722'
+    }
+  ],
+  ProcessedAt: '2023-08-10T20:59:56.674Z'
+}
