@@ -1,5 +1,8 @@
 import { Handler, Context, SQSEvent } from 'aws-lambda';
-import { SSMClient } from '@aws-sdk/client-ssm'; // ES Modules import
+import { Tracer } from '@aws-lambda-powertools/tracer';
+import { Logger } from '@aws-lambda-powertools/logger';
+
+import { SSMClient } from '@aws-sdk/client-ssm';
 
 interface OpsItemProps {
   Description: string;
@@ -16,14 +19,16 @@ function getFinding(event: SQSEvent): object {
   return _result;
 }
 
-export const handler: Handler = async (event: SQSEvent, context: Context) => {
-  // console.log(event);
+const tracer = new Tracer();
+const logger = new Logger();
 
+export const handler: Handler = async (event: SQSEvent, context: Context) => {
+  tracer.getSegment();
   const finding = getFinding(event);
-  console.log(finding);
-  console.log(typeof finding);
-  // console.log(finding.Compliance);
+  logger.info(JSON.stringify(finding, null, 2));
+  logger.info(typeof finding);
+  // logger.info(finding.Compliance);
   const ssmClient = new SSMClient({});
-  // console.log(ssmClient);
+  // logger.info(ssmClient);
   return null;
 };

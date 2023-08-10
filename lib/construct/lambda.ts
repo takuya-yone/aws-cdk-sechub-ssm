@@ -24,6 +24,7 @@ export class LambdaConstruct extends Construct {
         tracing: lambda.Tracing.ACTIVE,
         retryAttempts: 0,
         logRetention: logs.RetentionDays.ONE_WEEK,
+
         // insightsVersion: lambda.LambdaInsightsVersion.VERSION_1_0_229_0,
         // environment: {
         //   // DDB_TABLE: props.tableName,
