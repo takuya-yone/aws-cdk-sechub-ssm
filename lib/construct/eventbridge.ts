@@ -15,7 +15,7 @@ export interface EventBridgeConstructProps extends cdk.StackProps {
 
 export class EventBridgeConstruct extends Construct {
   constructor(scope: Construct, id: string, props: EventBridgeConstructProps) {
-    super(scope, id);
+     super(scope, id);
 
     const sechubEeventBus = new events.EventBus(this, 'sechubEeventBus', {
       eventBusName: 'sechubEeventBus',
