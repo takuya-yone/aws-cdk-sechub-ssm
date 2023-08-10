@@ -12,11 +12,6 @@
     "lint": "eslint --ignore-path .gitignore .",
     "format": "eslint --ignore-path .gitignore --fix .; prettier --ignore-path .gitignore --write ."
   },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
-    }
-  },
   "lint-staged": {
     "*.{js,jsx,ts,tsx,json}": "npm run format"
   },
