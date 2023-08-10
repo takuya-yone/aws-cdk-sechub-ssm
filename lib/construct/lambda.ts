@@ -18,9 +18,10 @@ export class LambdaConstruct extends Construct {
         runtime: lambda.Runtime.NODEJS_18_X,
         entry: path.join(__dirname, '../../src/lambda/index.ts'),
         handler: 'handler',
-        memorySize: 256,
+        // memorySize: 256,
         timeout: cdk.Duration.seconds(30),
         tracing: lambda.Tracing.ACTIVE,
+        retryAttempts: 0,
         // insightsVersion: lambda.LambdaInsightsVersion.VERSION_1_0_229_0,
         // environment: {
         //   // DDB_TABLE: props.tableName,

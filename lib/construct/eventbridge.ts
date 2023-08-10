@@ -17,12 +17,12 @@ export class EventBridgeConstruct extends Construct {
   constructor(scope: Construct, id: string, props: EventBridgeConstructProps) {
     super(scope, id);
 
-    const sechubEeventBus = new events.EventBus(this, 'sechubEeventBus', {
-      eventBusName: 'sechubEeventBus',
-    });
+    // const sechubEeventBus = new events.EventBus(this, 'sechubEeventBus', {
+    //   eventBusName: 'sechubEeventBus',
+    // });
 
     const sechubEeventRule = new events.Rule(this, 'sechubEeventRule', {
-      eventBus: sechubEeventBus,
+      // eventBus: sechubEeventBus,
       eventPattern: {
         source: ['aws.securityhub'],
         detailType: ['Security Hub Findings - Imported'],
@@ -43,6 +43,9 @@ export class EventBridgeConstruct extends Construct {
     );
     const lambdaEventSource = new lambda_event_sources.SqsEventSource(
       sechubSqsQueue,
+      {
+        batchSize: 1,
+      },
     );
     props.sechubSsmFunctin.addEventSource(lambdaEventSource);
   }
