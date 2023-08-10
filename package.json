@@ -18,7 +18,7 @@
     }
   },
   "lint-staged": {
-    "*.{ts,tsx,json}": "npm run format"
+    "*.{js,jsx,ts,tsx,json}": "npm run format"
   },
   "devDependencies": {
     "@types/jest": "^29.5.3",
