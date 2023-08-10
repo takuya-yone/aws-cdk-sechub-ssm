@@ -1,28 +1,19 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import * as cdk from 'aws-cdk-lib';
 import { Construct } from 'constructs';
-import { aws_lambda as lambda } from 'aws-cdk-lib';
 import { aws_lambda_nodejs as node_lambda } from 'aws-cdk-lib';
-// import  * as events  from 'aws-cdk-lib/aws-events';
 import { aws_events as events } from 'aws-cdk-lib';
 import { aws_events_targets as targets } from 'aws-cdk-lib';
 import { aws_sns as sns } from 'aws-cdk-lib';
 import { aws_sqs as sqs } from 'aws-cdk-lib';
 import { aws_sns_subscriptions as sns_subscription } from 'aws-cdk-lib';
 import { aws_lambda_event_sources as lambda_event_sources } from 'aws-cdk-lib';
-// import {SqsSubscription} from "@aws-cdk/aws-sns-subscriptions";
-
-import { aws_logs as logs } from 'aws-cdk-lib';
-import * as path from 'path';
 
 export interface EventBridgeConstructProps extends cdk.StackProps {
   sechubSsmFunctin: node_lambda.NodejsFunction;
 }
 
 export class EventBridgeConstruct extends Construct {
-  // public sechubSnsTopic: sns.Topic;
-  // public sechubSqsQueue: sqs.Queue;
-  // public lambdaEventSource: lambda_event_sources.SqsEventSource;
   constructor(scope: Construct, id: string, props: EventBridgeConstructProps) {
     super(scope, id);
 

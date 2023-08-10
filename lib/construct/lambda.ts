@@ -3,9 +3,6 @@ import * as cdk from 'aws-cdk-lib';
 import { Construct } from 'constructs';
 import { aws_lambda as lambda } from 'aws-cdk-lib';
 import { aws_lambda_nodejs as node_lambda } from 'aws-cdk-lib';
-import { aws_logs as logs } from 'aws-cdk-lib';
-import { aws_sqs as sqs } from 'aws-cdk-lib';
-import { aws_lambda_event_sources as lambda_event_sources } from 'aws-cdk-lib';
 
 import * as path from 'path';
 
@@ -14,7 +11,6 @@ export class LambdaConstruct extends Construct {
   constructor(scope: Construct, id: string) {
     super(scope, id);
 
-    // Good Pattern
     this.sechubSsmFunctin = new node_lambda.NodejsFunction(
       this,
       'sechubSsmFunctin',
