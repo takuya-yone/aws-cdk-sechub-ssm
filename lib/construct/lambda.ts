@@ -25,7 +25,6 @@ export class LambdaConstruct extends Construct {
         // environment: {
         //   // DDB_TABLE: props.tableName,
         // },
-        // logRetention: logs.RetentionDays.THREE_DAYS,
       },
     );
   }
