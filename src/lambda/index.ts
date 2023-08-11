@@ -4,16 +4,16 @@ import { Logger } from '@aws-lambda-powertools/logger';
 
 import { SSMClient } from '@aws-sdk/client-ssm';
 
-interface OpsItemProps {
+type OpsItemProps = {
   Description: string;
   RelatedOpsItems: [{ OpsItemId: string }];
   Source: string;
   Title: string;
   Tags: { Key: string; Value: string };
-}
+};
 // https://docs.aws.amazon.com/AWSJavaScriptSDK/v3/latest/client/ssm/command/CreateOpsItemCommand/
 
-interface SecHubASFF {
+type SecHubASFF = {
   AwsAccountId: string;
   CreatedAt: string;
   Description: string;
@@ -26,7 +26,7 @@ interface SecHubASFF {
   Region?: string;
   Remendiation?: { Recommendation: { Text: string; Url: string } };
   SourceUrl?: string;
-}
+};
 // https://docs.aws.amazon.com/ja_jp/securityhub/latest/userguide/asff-required-attributes.html
 
 function getFinding(event: SQSEvent): SecHubASFF {
