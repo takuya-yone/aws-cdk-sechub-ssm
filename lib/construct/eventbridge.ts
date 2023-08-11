@@ -17,36 +17,42 @@ export class EventBridgeConstruct extends Construct {
   constructor(scope: Construct, id: string, props: EventBridgeConstructProps) {
     super(scope, id);
 
-    // const sechubEeventBus = new events.EventBus(this, 'sechubEeventBus', {
-    //   eventBusName: 'sechubEeventBus',
-    // });
-
+    // create event rule on default eventbus
     const sechubEeventRule = new events.Rule(this, 'sechubEeventRule', {
-      // eventBus: sechubEeventBus,
       eventPattern: {
         source: ['aws.securityhub'],
         detailType: ['Security Hub Findings - Imported'],
       },
     });
 
+    // create sns topic
     const sechubSnsTopic = new sns.Topic(this, 'sechubSnsTopic', {
       topicName: 'sechubSnsTopic',
       displayName: 'sechubSnsTopic',
     });
+
+    // create sqs topic
     const sechubSqsQueue = new sqs.Queue(this, 'sechubSqsQueue', {
       queueName: 'sechubSqsQueue',
     });
 
+    // set sns topic as eventbridge rule target
     sechubEeventRule.addTarget(new targets.SnsTopic(sechubSnsTopic));
+
+    // set sqs queue as sns subscription
     sechubSnsTopic.addSubscription(
       new sns_subscription.SqsSubscription(sechubSqsQueue, {}),
     );
+
+    // mapping sqs eventsource whith lambda
     const lambdaEventSource = new lambda_event_sources.SqsEventSource(
       sechubSqsQueue,
       {
         batchSize: 1,
       },
     );
+
+    // set lambda as sqs queue target
     props.sechubSsmFunctin.addEventSource(lambdaEventSource);
   }
 }
