@@ -107,7 +107,7 @@ export const handler: Handler = async (event: SQSEvent, context: Context) => {
     // console.log(finding.Severity);
     // console.log(finding);
 
-    createIncident(finding);
+    await createIncident(finding);
 
     // console.log(finding.SourceUrl);
     // console.log(finding.AwsAccountId);
