@@ -18,12 +18,12 @@
   "devDependencies": {
     "@types/aws-lambda": "^8.10.119",
     "@types/jest": "^29.5.3",
-    "@types/node": "20.4.5",
+    "@types/node": "20.4.10",
     "@typescript-eslint/eslint-plugin": "^6.3.0",
     "@typescript-eslint/parser": "^6.3.0",
-    "aws-cdk": "2.90.0",
-    "esbuild": "^0.19.0",
-    "eslint": "^8.46.0",
+    "aws-cdk": "2.91.0",
+    "esbuild": "^0.19.1",
+    "eslint": "^8.47.0",
     "eslint-config-prettier": "^9.0.0",
     "eslint-plugin-jest": "^27.2.3",
     "husky": "^8.0.3",
@@ -39,9 +39,9 @@
     "@aws-lambda-powertools/metrics": "^1.12.1",
     "@aws-lambda-powertools/tracer": "^1.12.1",
     "@aws-sdk/client-ssm": "^3.388.0",
-    "aws-cdk-lib": "2.90.0",
+    "aws-cdk-lib": "2.91.0",
     "aws-lambda": "^1.0.7",
-    "constructs": "^10.0.0",
+    "constructs": "^10.2.69",
     "source-map-support": "^0.5.21"
   }
 }

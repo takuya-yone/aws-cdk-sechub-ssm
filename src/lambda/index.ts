@@ -45,13 +45,15 @@ export const handler: Handler = async (event: SQSEvent, context: Context) => {
 
   if (finding.ProductName === 'GuardDuty') {
     console.log('guardduty');
-    console.log(finding.SourceUrl);
-    console.log(finding.AwsAccountId);
+    console.log(finding);
+    // console.log(finding.SourceUrl);
+    // console.log(finding.AwsAccountId);
   }
   if (finding.ProductName === 'Config') {
     console.log('Config');
-    console.log(finding.SourceUrl);
-    console.log(finding.AwsAccountId);
+    console.log(finding);
+    // console.log(finding.SourceUrl);
+    // console.log(finding.AwsAccountId);
   }
 
   // logger.info(typeof finding);
