@@ -23,7 +23,7 @@ export class LambdaConstruct extends Construct {
         timeout: cdk.Duration.seconds(30),
         tracing: lambda.Tracing.ACTIVE,
         retryAttempts: 0,
-        logRetention: logs.RetentionDays.ONE_WEEK,
+        logRetention: logs.RetentionDays.THREE_DAYS,
 
         // insightsVersion: lambda.LambdaInsightsVersion.VERSION_1_0_229_0,
         // environment: {

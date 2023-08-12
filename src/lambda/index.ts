@@ -4,6 +4,8 @@ import { Logger } from '@aws-lambda-powertools/logger';
 
 import { SSMClient } from '@aws-sdk/client-ssm';
 
+type Severity = 'INFORMATIONAL' | 'LOW' | 'MEDIUM' | 'HIGH' | 'CRITICAL';
+
 type OpsItemProps = {
   Description: string;
   RelatedOpsItems: [{ OpsItemId: string }];
@@ -26,12 +28,14 @@ type SecHubASFF = {
   Region?: string;
   Remendiation?: { Recommendation: { Text: string; Url: string } };
   SourceUrl?: string;
+  Workflow?: { Status: string };
+  Severity?: { Label: Severity; Original: Severity };
 };
 // https://docs.aws.amazon.com/ja_jp/securityhub/latest/userguide/asff-required-attributes.html
 
 function getFinding(event: SQSEvent): SecHubASFF {
   const _tmp = JSON.parse(event.Records[0].body).Message;
-  const result = JSON.parse(_tmp).detail.findings[0] as object;
+  const result = JSON.parse(_tmp).detail.findings[0];
   return result as SecHubASFF;
 }
 
@@ -45,17 +49,24 @@ export const handler: Handler = async (event: SQSEvent, context: Context) => {
 
   if (finding.ProductName === 'GuardDuty') {
     console.log('guardduty');
+    console.log(finding.Severity);
     console.log(finding);
     // console.log(finding.SourceUrl);
     // console.log(finding.AwsAccountId);
-  }
-  if (finding.ProductName === 'Config') {
+  } else if (finding.ProductName === 'Security Hub') {
+    console.log('Security Hub');
+    console.log(finding.Severity);
+    console.log(finding);
+  } else if (finding.ProductName === 'Config') {
     console.log('Config');
+    console.log(finding.Severity);
     console.log(finding);
     // console.log(finding.SourceUrl);
     // console.log(finding.AwsAccountId);
+  } else {
+    console.log('Else');
+    console.log(finding);
   }
-
   // logger.info(typeof finding);
   // logger.info(finding.Compliance);
   const ssmClient = new SSMClient({});
