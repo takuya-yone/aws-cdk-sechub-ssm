@@ -48,7 +48,7 @@ type impactLevel = 1 | 2 | 3 | 4 | 5;
 //   impact: impactLevel;
 // };
 
-function getImpactFromSeverity(label: string): impactLevel {
+const getImpactFromSeverity = (label: string): impactLevel => {
   if (label === 'CRITICAL') {
     return 1;
   } else if (label === 'HIGH') {
@@ -60,9 +60,9 @@ function getImpactFromSeverity(label: string): impactLevel {
   } else {
     return 5;
   }
-}
+};
 
-async function createIncident(finding: SecHubASFF): Promise<void> {
+const createIncident = async (finding: SecHubASFF): Promise<void> => {
   const client = new SSMIncidentsClient({});
 
   const startIncidentInput: StartIncidentInput = {
@@ -83,13 +83,13 @@ async function createIncident(finding: SecHubASFF): Promise<void> {
   );
   const response = await client.send(updateIncidentRecordCommand);
   console.log(response);
-}
+};
 
-function getFinding(event: SQSEvent): SecHubASFF {
+const getFinding = (event: SQSEvent): SecHubASFF => {
   const _tmp = JSON.parse(event.Records[0].body).Message;
   const result = JSON.parse(_tmp).detail.findings[0];
   return result as SecHubASFF;
-}
+};
 
 const tracer = new Tracer();
 const logger = new Logger();
